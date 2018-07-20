@@ -1,2 +1,2 @@
 # Connect5AI
-MY project lol
+EDU'S project lol
