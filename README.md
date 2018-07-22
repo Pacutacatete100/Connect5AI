@@ -3,4 +3,6 @@ This project is built with python and tensorflow and it's main objective is to t
 
 It has been developed as the final project of @Pacutacatete100 and @aguilaair with the help of @fatcatmat.
 
-This project is not finished yet and will not tyrain. We hope to fixthis soon.
+This project is not finished yet and will not train. We hope to fix this soon.
+
+@aguilaair and @fatcatmat when should we continue working on this?
