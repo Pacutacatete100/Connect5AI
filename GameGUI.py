@@ -4,8 +4,8 @@ from Game import Game
 from GameBot import GameBot
 
 # Graphic Constants
-canvas_size = 600
-panel_height = 100
+canvas_size = 800
+panel_height = 300
 line_width = 1
 piece_size = 0.8  # compared to calculated line_space
 
@@ -32,8 +32,10 @@ class GameWindow(Frame):
         self.master.title('Connect 5')
 
         # Init canvas
-        self.canvas = Canvas(self, width=canvas_size, height=canvas_size, bg=board_color)
-        self.canvas.bind('<Button-1>', self.click_handler)  # binds click event to handler
+        self.canvas = Canvas(self, width=canvas_size,
+                             height=canvas_size, bg=board_color)
+        # binds click event to handler
+        self.canvas.bind('<Button-1>', self.click_handler)
         self.canvas.pack()
 
         # Init panel label
@@ -41,7 +43,8 @@ class GameWindow(Frame):
         self.panel_label.pack()
 
         # Init restart button
-        restart_button = Button(self, text='Restart', padx=10, pady=6, command=lambda: self.new_game())
+        restart_button = Button(
+            self, text='Restart', padx=10, pady=6, command=lambda: self.new_game())
         restart_button.pack()
 
         # Init computed canvas data
@@ -82,7 +85,8 @@ class GameWindow(Frame):
 
         # Compute canvas data
         self.board_size = self.game.size
-        self.line_space = (canvas_size - self.game.size * line_width) / (self.board_size + 1)
+        self.line_space = (canvas_size - self.game.size *
+                           line_width) / (self.board_size + 1)
 
         # Draw
         self.canvas.delete(ALL)
@@ -93,10 +97,13 @@ class GameWindow(Frame):
     def draw_lines(self):
         """Draw board lines"""
         for i in range(self.board_size):
-            distance = (self.line_space + line_width) * i + self.line_space  # distance from line to board edge
+            distance = (self.line_space + line_width) * i + \
+                self.line_space  # distance from line to board edge
 
-            self.canvas.create_line(self.line_space, distance, canvas_size - self.line_space, distance, fill=line_color)
-            self.canvas.create_line(distance, self.line_space, distance, canvas_size - self.line_space, fill=line_color)
+            self.canvas.create_line(
+                self.line_space, distance, canvas_size - self.line_space, distance, fill=line_color)
+            self.canvas.create_line(
+                distance, self.line_space, distance, canvas_size - self.line_space, fill=line_color)
 
     def draw_pieces(self):
         """Draw board pieces, if any exist"""
@@ -112,9 +119,11 @@ class GameWindow(Frame):
         x = board_x * (self.line_space + line_width) + self.line_space
         y = board_y * (self.line_space + line_width) + self.line_space
 
-        o = (piece_size / 2) * self.line_space  # offset from center of circle to edge
+        # offset from center of circle to edge
+        o = (piece_size / 2) * self.line_space
         color = piece1_color if side == 1 else piece2_color
-        self.canvas.create_oval(x - o, y - o, x + o, y + o, fill=color, outline=color)
+        self.canvas.create_oval(x - o, y - o, x + o,
+                                y + o, fill=color, outline=color)
 
     def place_piece(self, point):
         """Places a piece on the board and also the game. Returns False if unable to place at point"""
@@ -148,8 +157,10 @@ class GameWindow(Frame):
         """Handles click event on canvas"""
         if self.game_status == 0 and 0 <= event.x <= canvas_size and 0 <= event.y <= canvas_size:
             # Compute board_x and board_y
-            board_x = int((event.x - self.line_space) / (self.line_space + line_width) + 0.5)
-            board_y = int((event.y - self.line_space) / (self.line_space + line_width) + 0.5)
+            board_x = int((event.x - self.line_space) /
+                          (self.line_space + line_width) + 0.5)
+            board_y = int((event.y - self.line_space) /
+                          (self.line_space + line_width) + 0.5)
             self.place_piece((board_x, board_y))
 
     def update_panel(self):

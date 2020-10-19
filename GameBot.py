@@ -126,13 +126,14 @@ class GameBot:
 
         if len(best_points) == 0:
             return None  # no points
-
-        return random.choice(best_points)
+        choice = random.choice(best_points)
+        # print(choice)#prints bots chosen coordinates
+        return choice
 
     def get_score(self, point):
         """Returns score of given point (x, y). Higher the better"""
         win_scores = [0, 10, 50, 200, 1000, math.inf]
-        lose_scores = [0, 10, 50, 200, 1000, 10000]
+        lose_scores = [0, 10, 50, 200, 1000, math.inf]
         score = 0
         for x, y, n in self.get_affected_conditions(point):
             score += win_scores[self.win_conditions[x][y][n] + 1]
@@ -146,8 +147,8 @@ def main():
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 1, 0, 0, 0],
-        [0, 0, 2, 2, 2, 0, 1, 0, 0],
+        [0, 0, 0, 0, 0, 2, 0, 0, 0],
+        [0, 0, 2, 2, 2, 0, 2, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0]

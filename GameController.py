@@ -1,4 +1,5 @@
 from Game import Game
+from GameBot import GameBot
 
 
 # Command line controller for Game
@@ -6,13 +7,13 @@ class GameController:
     def __init__(self):
         self.game = Game()
         self.current_side = 1
-        self.new_game()
+        self.new_game(size=19)
 
     def new_game(self, size):
         self.game = Game(size=size)
         self.current_side = 1
         self.start_game()
-        
+
     def start_game(self):
         while True:
             self.game.print_board()
@@ -25,8 +26,8 @@ class GameController:
                 print('Win: ' + str(self.current_side))
                 break
             self.toggle_side()
-            print(self.game.game_str())
-    
+            #print(self.game.game_str())
+
     def toggle_side(self):
         self.current_side = 2 if self.current_side == 1 else 1
 
@@ -34,3 +35,6 @@ class GameController:
         print('Enter point (x and y separated by space)')
         user_input = input().split(' ')
         return int(user_input[0]), int(user_input[1])
+
+
+

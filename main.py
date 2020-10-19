@@ -3,7 +3,8 @@ from GameController import GameController
 import GameIO
 
 # # Use GameController to play in the command line
-# controller = GameController()
+controller = GameController()
+controller.start_game()
 
 # To train, probably directly use Game instance
 # game = Game()
